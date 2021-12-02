@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+}
+
+html {
+  background-color: black;
+  font-family: "Raleway", sans-serif;
+}
+
+:root {
+  --whitesmoke: rgb(230, 230, 230);
+  --gray: rgb(114, 114, 114);
+}
+
+.none {
+  display: none !important;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+/*Index*/
+
+.index {
+  transition: 0.3s;
+}
+
+h1 {
+  color: var(--whitesmoke);
+  font-weight: 600;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.title {
+  display: flex;
+  height: 15vh;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  background-color: var(--whitesmoke);
+  width: 100vw;
+  min-height: 85vh;
+  border-radius: 2rem 2rem 0 0;
+}
+
+.buscador-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+}
+
+.buscador {
+  width: 65%;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  color: var(--gray);
+}
+
+/*Notas*/
+
+.notas {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nota {
+  width: 65%;
+  padding: 0.5rem 1rem;
+  height: 4.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.nota:hover {
+  border: 2px solid black;
+}
+
+.filter {
+  visibility: hidden;
+  opacity: 0;
+  order: 1;
+}
+
+.nota h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.nota p {
+  padding-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+/*Botones*/
+
+.create,
+.menu {
+  position: fixed;
+  border-radius: 2.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  background-color: black;
+  cursor: pointer;
+  transition: 0.5s;
+  border: black solid 2px;
+  display: flex;
+  bottom: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.create {
+  right: 5vw;
+  z-index: 102;
+}
+
+.menu {
+  left: 5vw;
+  z-index: 101;
+}
+
+.create img,
+.menu img {
+  filter: invert(95%);
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.create:hover,
+.menu:hover {
+  background-color: whitesmoke;
+}
+
+.menu-activo {
+  height: calc(100vh - 1.5rem - 20vh) !important;
+  width: 90vw !important;
+  justify-content: start;
+  align-items: flex-end;
+}
+
+.menu-oculto {
+  position: fixed;
+  border-radius: 2.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  background-color: black;
+  transition: 0.5s;
+  border: black solid 2px;
+  bottom: 1.5rem;
+  left: 5vw;
+  z-index: 100;
+}
+
+.invert {
+  filter: invert(0%) !important;
+}
+
+/*Campo de notas*/
+
+.campo-notas {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.3s;
+}
+
+.input-notas {
+  font-size: 2rem;
+  width: 75%;
+  height: 55vh;
+  border-radius: 2rem;
+  outline: none;
+  border: none;
+  padding: 2rem;
+  font-family: "Raleway", sans-serif;
+  line-height: 200%;
+  resize: none;
+}
+
+/*Elegir titulo*/
+
+.elegirTitulo {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.3s;
+  background-color: black;
+  position: absolute;
+  width: 75vw;
+  height: 55vh;
+  border-radius: 2rem;
+  font-family: "Raleway", sans-serif;
+  padding: 2rem;
+  top: 20vh;
+}
+
+.elegirTitulo h2 {
+  color: var(--whitesmoke);
+  font-weight: 500;
+  font-size: 3rem;
+  padding: 2.5rem 1rem;
+}
+
+.elegirTitulo input {
+  width: 80%;
+  padding: 1rem;
+  border-radius: 1rem;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.elegirTitulo button {
+  border-radius: 3rem;
+  border: 0.5rem var(--gray) solid;
+  color: var(--gray);
+  background-color: black;
+  font-size: 2rem;
+  margin-top: 4rem;
+  padding: 1rem 3rem;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.elegirTitulo button:hover {
+  border: 0.5rem var(--whitesmoke) solid;
+  color: var(--whitesmoke);
+}
+
+.centrar {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  padding: 0;
+  transition: 0.3s;
+  margin: 0;
+}

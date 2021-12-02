@@ -1,0 +1,311 @@
+Script
+
+
+
+import { abrirEditorNotas, aparecerElemento, btnHoverImg, cambiarTitulo, cambiarTituloInput, crearNotaBtn, devolverValorInput, expandirMenu, obtenerNotas, ventanaEmergente } from "./botones.js";
+import searchFilter from "./filtro_busquedas.js";
+import { getData, uploadData } from "./ls.js";
+import { crearNotasDom, crearObjeto, crearUltimaNotaDom, Nota } from "./POO.js";
+
+const d = document,
+claseNotas = Nota;
+
+let titulo = "No hay título"
+
+d.addEventListener("DOMContentLoaded", e => {
+  searchFilter(".buscador", ".nota")
+  crearNotaBtn(".create", ".index", ".campo-notas","https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png","https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png", true)
+  btnHoverImg(".create", "invert")
+  btnHoverImg(".menu", "invert")
+  expandirMenu(".menu","menu-activo", ".menu-oculto")
+  aparecerElemento(".create", ".menu", ".menu-oculto", ".create img", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png")
+  // uploadData(["Hola"], "Mundo", "Prueba")
+  // console.log(getData("Prueba"));
+  ventanaEmergente(".create", ".elegirTitulo button", ".centrar", ".create img", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png")
+  cambiarTituloInput(".elegirTitulo button", "h1", ".elegirTitulo input")
+
+  /*Código que no está en módulos uwun't */
+
+  const $btnTitulo = d.querySelector(".elegirTitulo button"),
+  $crearObjetoNotaBtn = d.querySelector(".create"),
+  $crearObjetoNotaBtnImg = d.querySelector(".create img"),
+  $inputTitulo = d.querySelector(".elegirTitulo input"),
+  $inputContenido = d.querySelector(".input-notas")
+
+  $btnTitulo.addEventListener("click", e => {
+    titulo = devolverValorInput(".elegirTitulo input") // Al crear una nueva nota, el título se guarda en ésta variable
+  })
+
+  $crearObjetoNotaBtn.addEventListener("click", e => {
+
+    if ($crearObjetoNotaBtnImg.getAttribute("src") == "https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png"){
+
+    if ($inputContenido.value == ""){ // Si no se ha ingresado ningún contenido para la nota, se devuelve una alerta
+      alert("Debes ingresar algo")
+    }
+    else{ // En el caso contrario de que sí se haya ingresado un contenido, se procede a subir la nota creada en el local storage (para que luego de salir de la página la nota aún exista) y a mostrarla en la interfaz
+      uploadData(
+        getData("notas"),
+        crearObjeto(claseNotas, devolverValorInput(".elegirTitulo input"), devolverValorInput(".input-notas")), "notas")
+        crearUltimaNotaDom(getData("notas"), "nota", ".notas")
+
+        cambiarTitulo("h1", "Mis notas")
+        notas = obtenerNotas(".nota")
+        mostrarNotaSeleccionada()
+        
+        $inputTitulo.value = "" // Luego de subir la nota, se vacía el contenido de los input de título y contenido para que, al crear una nueva nota, no estén los valores de la nota anterior
+        $inputContenido.value = ""
+      }
+    }
+  })
+  
+})
+
+let notasGuardadas = getData("notas")
+
+if (notasGuardadas.length === 0){
+  console.log("No existen notas");
+  uploadData([], crearObjeto(claseNotas, "Tutorial de uso UwU", "Veo que es tu primera vez entrando...") , "notas") // Si no existen notas (el usuario ingresa por primera vez), se crea automáticamente una nota que sirve a manera de tutorial para usar la página
+}
+
+crearNotasDom(getData("notas"), "nota", ".notas") // Aquí se imprimen las notas guardadas en la interfáz
+
+/*Mostrar notas al hacer click sobre ellas*/
+
+// console.log(obtenerNotas(".nota"));
+
+let notas = obtenerNotas(".nota")
+
+const $inputTitulo = d.querySelector(".elegirTitulo input"),
+$inputContenido = d.querySelector(".input-notas")
+let notasExistentes = getData("notas")
+
+function mostrarNotaSeleccionada() {
+  notas.forEach((nota, index) => {
+    
+  nota.addEventListener("click", e => {
+    notasExistentes = getData("notas")
+    const notaSeleccionada = nota
+
+    cambiarTitulo("h1", notasExistentes[index].title)
+    $inputContenido.value = notasExistentes[index].content
+
+    /*Aparecer el menú*/
+
+    abrirEditorNotas()
+   crearNotaBtn(".create", ".index", ".campo-notas","https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png","https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png", false)
+  })
+});
+}
+
+mostrarNotaSeleccionada()
+
+
+
+botones
+
+
+export function crearNotaBtn(btn, desaparecer, aparecer, img1, img2, booleano) {
+
+  /*La función permite que al presionar el botón se pase del contenido principal a la creación de una nota */
+
+  let primero = booleano // El mismo botón sirve para crear una nueva nota y para confirmarla, por lo que se intercala la funcionalidad
+  
+  const d = document,
+  $btn = d.querySelector(btn),
+  $desaparecer = d.querySelector(desaparecer),
+  $aparecer = d.querySelector(aparecer),
+  $btnImg = d.querySelector(`${btn} img`)
+
+  let $inputContenido = d.querySelector(".input-notas")
+
+  $btn.addEventListener("click", e => {
+
+      if(primero){
+
+      $desaparecer.classList.add("invisible")
+      setTimeout(() => {
+        $desaparecer.classList.add("none")
+        $aparecer.classList.remove("none")
+        setTimeout(() => {
+          $aparecer.classList.remove("invisible")
+        }, 300); // Como tiene una transición de 0.3 segundos, uso el setTimeOut
+      }, 300);
+      primero = false
+      $btnImg.setAttribute("src", img2)
+    }
+    
+    else{
+
+      if ($inputContenido.value == ""){
+        alert("Debes ingresar texto") // Ésta es una validación para evitar que no sea ingresado el contenido.
+    }
+    else{
+      // Si ya fue ingresado el contenido, se crea la nota (con otra función) y se vuelve al index
+      $aparecer.classList.add("invisible")
+      setTimeout(() => {
+        $aparecer.classList.add("none")
+        $desaparecer.classList.remove("none")
+        setTimeout(() => {
+          $desaparecer.classList.remove("invisible")
+        }, 300);
+      }, 300);
+      primero = true
+      $btnImg.setAttribute("src", img1) // La imagen del botón pasa de ser un lapiz a un pulgar arriba
+    }
+    }
+    })
+
+
+}
+
+export function btnHoverImg(btn, filter) {
+  /*Esta función hace que al hacer hover sobre un botón, se aplique un filtro a la imagen del mismo*/
+  const d = document,
+   $btn = d.querySelector(btn),
+  $img = d.querySelector(`${btn} img`)
+
+  $btn.addEventListener("mouseover", e => {
+    $img.classList.add(filter)
+  })
+  $btn.addEventListener("mouseout", e => {
+    $img.classList.remove(filter)
+  })
+  
+}
+
+export function expandirMenu(btn, clase, menu) {
+  /*Esta función hace que al presionar un botón, se oculte o aparezca un menú*/
+  const d = document,
+  $btn = d.querySelector(btn),
+  $menu = d.querySelector(menu)
+
+  $btn.addEventListener("click", e => {
+    $menu.classList.toggle(clase)
+    $menu.classList.toggle("invisible")
+  })
+}
+
+export function aparecerElemento(btn, element, element2, img, imgSrc) {
+  /*Esta función hace que al presionar un botón aparezca un elemento. En este caso, se usa para aparecer el botón de menú, que en teoría sólo aparecerá cuando se esté editando una nota*/
+  const d = document,
+  $btn = d.querySelector(btn),
+  $img = d.querySelector(img),
+  $element = d.querySelector(element),
+  $element2= d.querySelector(element2)
+
+  $btn.addEventListener("click", e => {
+    if ($img.getAttribute("src") != imgSrc){ // Al cambiar el botón de imagen (lapiz y pulgar arriba), se hace ésta validación para evitar que cuando se presione el botón sin haber ingresado el título o el contenido (osea, que no pase al index sino que siga en la pestaña de editar), no se oculte el menú
+    $element.classList.add("none")
+    $element2.classList.add("none")
+  } 
+  else{
+      $element.classList.remove("none")
+      $element2.classList.remove("none")
+    }
+  })
+}
+
+export function ventanaEmergente(btnAppear, btnDisappear, window, img, imgSrc) {
+  /*Esta función hace que al presionar un botón aparezca una ventana emergente (hecha en HTML, no una alerta) y que al presionar otro botón, ésta desaparezca*/
+  const d = document,
+  $btnAppear = d.querySelector(btnAppear),  
+  $btnDisappear = d.querySelector(btnDisappear),  
+  $img = d.querySelector(img),  
+  $window = d.querySelector(window)
+
+  $btnAppear.addEventListener("click", e => {
+    if (d.querySelector(`${window} input`).value == ""){ // Se valida que el campo de título esté vacío ya que, si hay texto, naturalmente la ventana desaparecerá
+      /*Esta validación se realiza para que, si la imagen del botón es un lápiz, aparezca la ventana, y si es un pulgar arriba, desaparezca. Ésto con el fin de evitar que al presionar el botón, aún si no se ha ingresado el título o el texto, la ventana desaparezca*/
+      if($img.getAttribute("src") === imgSrc){
+        $window.classList.remove("none")
+        setTimeout(() => {
+          $window.classList.remove("invisible")
+        }, 300);
+      }
+      else{
+        $window.classList.add("invisible")
+      setTimeout(() => {
+        $window.classList.add("none")
+      }, 300);
+      }
+    }
+  })
+  $btnDisappear.addEventListener("click", e => {
+
+    if (d.querySelector(`${window} input`).value != "") { // Aquí se hace una validación para que no se pueda dejar vacío el input de la ventana emergente
+      // Si el input no está vacío, simplemente desaparecerá la ventana emergente
+      $window.classList.add("invisible")
+      setTimeout(() => {
+        $window.classList.add("none")
+      }, 300); // Al tener una transición de 0.3 segundos, utilizo el setTimeOut
+    }
+  })
+}
+
+export function devolverValorInput(input) {
+  const $input = document.querySelector(input)
+  return $input.value
+}
+
+export function cambiarTituloInput(btn, etiquetaTitulo, input) {
+  /*Esta función cambia un título por el valor de un input*/
+  const d = document,
+  $etiquetaTitulo = d.querySelector(etiquetaTitulo),
+  $btn = d.querySelector(btn),
+  $input = d.querySelector(input)
+
+  $btn.addEventListener("click", e => {
+    ($input.value == "") // Aquí se valida que el input no esté vacío
+    ? $etiquetaTitulo.textContent = "Debes ingresar un título"
+    : $etiquetaTitulo.textContent = $input.value
+  })
+}
+
+export function cambiarTitulo(etiquetaTitulo, nuevoTitulo) {
+  /*Aquí se cambia el texto de una etiqueta por un nuevo texto especificado como parámetro*/
+  const d = document,
+  $etiquetaTitulo = d.querySelector(etiquetaTitulo)
+
+  $etiquetaTitulo.textContent = nuevoTitulo
+}
+
+export function obtenerNotas(selector) {
+  const d = document
+  return d.querySelectorAll(selector)
+}
+
+export function abrirEditorNotas() {
+  const d = document,
+  $desaparecer = d.querySelector(".index"),
+  $aparecer = d.querySelector(".campo-notas"),
+  $btnImg = d.querySelector(".create img")
+
+
+      $desaparecer.classList.add("invisible")
+      setTimeout(() => {
+        $desaparecer.classList.add("none")
+        $aparecer.classList.remove("none")
+        setTimeout(() => {
+          $aparecer.classList.remove("invisible")
+        }, 300);
+      }, 300);
+      $btnImg.setAttribute("src", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png")
+}
+
+export function aparecerMenu(params) {
+  const d = document,
+  $btn = d.querySelector(btn),
+  $img = d.querySelector(img),
+  $element = d.querySelector(element),
+  $element2= d.querySelector(element2)
+
+    if ($img.getAttribute("src") != imgSrc){ // Al cambiar el botón de imagen (lapiz y pulgar arriba), se hace ésta validación para evitar que cuando se presione el botón sin haber ingresado el título o el contenido (osea, que no pase al index sino que siga en la pestaña de editar), no se oculte el menú
+    $element.classList.add("none")
+    $element2.classList.add("none")
+  } 
+  else{
+      $element.classList.remove("none")
+      $element2.classList.remove("none")
+    }
+}
