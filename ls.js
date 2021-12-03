@@ -20,3 +20,4 @@ export function uploadOneElement(element, key) {
   /*Esta función sube un elemento al local storage*/
   ls.setItem(key, JSON.stringify(element))
 }
+// uwun't
