@@ -7,6 +7,24 @@ html {
   font-family: "Raleway", sans-serif;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-track {
+  background-color: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+}
+
 :root {
   --whitesmoke: rgb(230, 230, 230);
   --gray: rgb(114, 114, 114);
@@ -87,6 +105,8 @@ section {
   margin-bottom: 2rem;
   cursor: pointer;
   border: 2px solid white;
+  overflow: hidden;
+  text-overflow: Ellipsis;
 }
 
 .nota:hover {
@@ -116,8 +136,8 @@ section {
 .menu {
   position: fixed;
   border-radius: 2.5rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   background-color: black;
   cursor: pointer;
   transition: 0.5s;
@@ -141,8 +161,8 @@ section {
 .create img,
 .menu img {
   filter: invert(95%);
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .create:hover,
@@ -152,7 +172,7 @@ section {
 
 .menu-activo {
   height: calc(100vh - 1.5rem - 20vh) !important;
-  width: 90vw !important;
+  width: 91vw !important;
   justify-content: start;
   align-items: flex-end;
 }
@@ -160,8 +180,8 @@ section {
 .menu-oculto {
   position: fixed;
   border-radius: 2.5rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   background-color: black;
   transition: 0.5s;
   border: black solid 2px;
@@ -188,7 +208,7 @@ section {
 .input-notas {
   font-size: 2rem;
   width: 75%;
-  height: 55vh;
+  height: 50vh;
   border-radius: 2rem;
   outline: none;
   border: none;
@@ -210,7 +230,7 @@ section {
   background-color: black;
   position: absolute;
   width: 75vw;
-  height: 55vh;
+  height: 50vh;
   border-radius: 2rem;
   font-family: "Raleway", sans-serif;
   padding: 2rem;
@@ -220,28 +240,28 @@ section {
 .elegirTitulo h2 {
   color: var(--whitesmoke);
   font-weight: 500;
-  font-size: 3rem;
-  padding: 2.5rem 1rem;
+  font-size: 2rem;
+  padding: 1rem 1rem 2.5rem 1rem;
 }
 
 .elegirTitulo input {
   width: 80%;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   outline: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-align: center;
 }
 
 .elegirTitulo button {
-  border-radius: 3rem;
+  border-radius: 1.5rem;
   border: 0.5rem var(--gray) solid;
   color: var(--gray);
   background-color: black;
-  font-size: 2rem;
-  margin-top: 4rem;
-  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  padding: 0.5rem 1.5rem;
   transition: 0.5s;
   cursor: pointer;
 }
