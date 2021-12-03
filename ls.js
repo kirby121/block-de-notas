@@ -10,8 +10,13 @@ export function getData(dataName) {
 }
 
 export function uploadData (oldData, newData, dataName) {
-  /*Esta función sube datos al local storage*/
+  /*Esta función inserta un elemento a un array dado y lo sube al local storage*/
   const dataArr = oldData
   dataArr.push(newData)
   ls.setItem(dataName, JSON.stringify(dataArr))
+}
+
+export function uploadOneElement(element, key) {
+  /*Esta función sube un elemento al local storage*/
+  ls.setItem(key, JSON.stringify(element))
 }
