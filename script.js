@@ -62,7 +62,9 @@ d.addEventListener("DOMContentLoaded", e => {
 
         $contenidoNotas = d.querySelectorAll(".nota p")
 
-        $contenidoNotas[getData("index")].textContent = nuevoArreglo[getData("index")].content
+        $contenidoNotas[getData("index")].textContent = `${nuevoArreglo[getData("index")].content.slice(0,80)}...` 
+
+        //`${nota.content.slice(0,80)}...`
         
         $inputTitulo.value = ""
         $inputContenido.value = ""
@@ -95,7 +97,7 @@ d.addEventListener("DOMContentLoaded", e => {
 let notasGuardadas = getData("notas")
 
 if (notasGuardadas.length === 0){
-  uploadData([], crearObjeto(claseNotas, "Tutorial de uso UwU", "Veo que es tu primera vez entrando...") , "notas")
+  uploadData([], crearObjeto(claseNotas, "Presioname uwun't", "Veo que es tu primera vez entrando, así que aquí va una pequeña explicación del funcionamiento de la página.\n\n 1. Crear una nota: Para crear una nota, debes hacer click en el lápiz que se encuentra en la esquina inferior derecha del menú de inicio. Luego de hacerlo, aparecerá una ventana en la que deberás ingresar un título. Este será el nombre con el que se guardará la nota. Después de ingresar el título y presionar el botón de aceptar, se mostrará un área de color blanco en la que escribirás tu texto. Al terminar, deberás presionar el botón de la esquina inferior derecha con un pulgar arriba para guardar la nota.\n\n2. Editar una nota: Para modificar el contenido textual de una nota, deberás hacer click sobre ésta misma. Luego de esto, serás enviado al mismo editor de texto que cuando creas la nota, aunque con la diferencia de que, en vez de estar vacío, contendrá la nota que habías guardado. Aquí es donde podrás modificar el contenido. Una vez que hayas terminado, puedes presionar el botón de la esquina inferior derecha y se guardará automáticamente.") , "notas")
   uploadOneElement(0, "index")
 }
 
