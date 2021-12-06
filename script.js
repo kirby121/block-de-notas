@@ -11,15 +11,15 @@ let titulo = "No hay título"
 
 d.addEventListener("DOMContentLoaded", e => {
   
-  cambiarTituloEditor(".campo-notas textarea", ".create", "h1", ".create img", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png", cambiarTexto)
-  ventanaEmergente(".create", ".elegirTitulo button", ".centrar", ".create img", "https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png")
+  cambiarTituloEditor(".campo-notas textarea", ".create", "h1", ".create img", "confirm.webp", cambiarTexto)
+  ventanaEmergente(".create", ".elegirTitulo button", ".centrar", ".create img", "edit.webp", "confirm.webp")
   searchFilter(".buscador", ".nota")
-  crearNotaBtn(".create", ".index", ".campo-notas","https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png","https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png")
+  crearNotaBtn(".create", ".index", ".campo-notas","edit.webp","confirm.webp")
   btnHoverImg(".create", "invert")
   btnHoverImg(".menu", "invert")
-  mostrarNotas(getData, ".nota", ".index", ".campo-notas", ".create img", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png", ".create", insertarValorTextarea, ".campo-notas textarea", cambiarTexto, "h1", uploadOneElement)
+  mostrarNotas(getData, ".nota", ".index", ".campo-notas", ".create img", "confirm.webp", ".create", insertarValorTextarea, ".campo-notas textarea", cambiarTexto, "h1", uploadOneElement)
   expandirMenu(".menu","menu-activo", ".menu-oculto")
-  mostrarMenu(".menu", ".menu-oculto",mostrarElemento, ocultarElemento, ".create img", "https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png", "https://media-public.canva.com/Shvr8/MAELO-Shvr8/1/tl.png")
+  mostrarMenu(".menu", ".menu-oculto",mostrarElemento, ocultarElemento, ".create img", "edit.webp", "confirm.webp")
   cambiarTituloVentanaEmergente(cambiarTexto, "h1", ".elegirTitulo input", ".elegirTitulo button")
 
   /*Código que no está en módulos uwun't */
@@ -41,7 +41,7 @@ d.addEventListener("DOMContentLoaded", e => {
   
   $crearObjetoNotaBtn.addEventListener("click", e => {
 
-    if ($crearObjetoNotaBtnImg.getAttribute("src") == "https://media-public.canva.com/R9-Ts/MAA9p7R9-Ts/4/tl.png"){
+    if ($crearObjetoNotaBtnImg.getAttribute("src") == "edit.webp"){
       
       if($titulo.textContent.includes("Editando: ")){
 

@@ -7,7 +7,7 @@ export default function searchFilter(input, selector) {
       if(e.key === "Esc") e.target.vale = "";
       
       d.querySelectorAll(selector).forEach(el => 
-        el.textContent.toLowerCase().includes(e.target.value)
+        el.textContent.toLowerCase().includes(e.target.value.toLowerCase())
         ? el.classList.remove("filter")
         : el.classList.add("filter")
       )

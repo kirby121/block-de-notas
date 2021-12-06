@@ -48,12 +48,12 @@ h1 {
   color: var(--whitesmoke);
   font-weight: 600;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
 }
 
 .title {
   display: flex;
-  height: 15vh;
+  height: 12vh;
   justify-content: center;
   align-items: center;
 }
@@ -61,7 +61,7 @@ h1 {
 section {
   background-color: var(--whitesmoke);
   width: 100vw;
-  min-height: 85vh;
+  min-height: 88vh;
   border-radius: 2rem 2rem 0 0;
 }
 
@@ -74,8 +74,8 @@ section {
 
 .buscador {
   width: 65%;
-  padding: 0.5rem 1rem;
-  font-size: 1.5rem;
+  padding: 0.4rem 1rem;
+  font-size: 1.3rem;
   border: none;
   outline: none;
   border-radius: 0.5rem;
@@ -87,7 +87,7 @@ section {
 .notas {
   display: flex;
   justify-content: center;
-  padding-top: 5vh;
+  padding-top: 2.5vh;
   align-items: center;
   flex-direction: column;
 }
@@ -126,7 +126,7 @@ section {
 
 .nota p {
   padding-top: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--gray);
 }
 
@@ -154,7 +154,7 @@ section {
 }
 
 .menu {
-  left: 5vw;
+  left: 4vw;
   z-index: 101;
 }
 
@@ -171,7 +171,7 @@ section {
 }
 
 .menu-activo {
-  height: calc(100vh - 1.5rem - 20vh) !important;
+  height: calc(100vh - 1.5rem - 17vh) !important;
   width: 91vw !important;
   justify-content: start;
   align-items: flex-end;
@@ -180,13 +180,13 @@ section {
 .menu-oculto {
   position: fixed;
   border-radius: 2.5rem;
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   background-color: black;
   transition: 0.5s;
   border: black solid 2px;
   bottom: 1.5rem;
-  left: 5vw;
+  left: 4vw;
   z-index: 100;
 }
 
@@ -206,7 +206,7 @@ section {
 }
 
 .input-notas {
-  font-size: 2rem;
+  font-size: 1.7rem;
   width: 75%;
   height: 50vh;
   border-radius: 2rem;
@@ -223,7 +223,6 @@ section {
 .elegirTitulo {
   display: flex;
   justify-content: center;
-  padding-top: 5vh;
   align-items: center;
   flex-direction: column;
   transition: 0.3s;
@@ -234,7 +233,7 @@ section {
   border-radius: 2rem;
   font-family: "Raleway", sans-serif;
   padding: 2rem;
-  top: 20vh;
+  top: 17vh;
 }
 
 .elegirTitulo h2 {
