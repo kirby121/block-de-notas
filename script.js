@@ -96,6 +96,7 @@ let notasGuardadas = getData("notas")
 
 if (notasGuardadas.length === 0){
   uploadData([], crearObjeto(claseNotas, "Tutorial de uso UwU", "Veo que es tu primera vez entrando...") , "notas")
+  uploadOneElement(0, "index")
 }
 
 crearNotasDom(getData("notas"), "nota", ".notas")
