@@ -37,7 +37,7 @@ export function cambiarTituloVentanaEmergente(funcion, titulo, input, btn) {
 
 export function cambiarTituloEditor(textarea, btn, title, btnImg, img, funcion) {
 
-  // Esta funció  cambia el título al presionar el botón de confirmar luego de modificar una nota. Si el contenido está vacío, dirá "Debes ingresar un contenido", y si hay un contenido, dirá "Mis notas"
+  // Esta función cambia el título al presionar el botón de confirmar luego de modificar una nota. Si el contenido está vacío, dirá "Debes ingresar un contenido", y si hay un contenido, dirá "Mis notas"
 
   const $btn = d.querySelector(btn),
   $textarea = d.querySelector(textarea),
@@ -51,5 +51,60 @@ export function cambiarTituloEditor(textarea, btn, title, btnImg, img, funcion) 
         funcion(title, "Mis notas")  
       }, 200);
     }
+  })
+}
+
+export function volverAIndex(index, editor, btnImg, inputTitulo, inputContenido, imgEditar, cambiarTitulo) {
+
+  const $inputTitulo = d.querySelector(inputTitulo),
+  $inputContenido = d.querySelector(inputContenido),
+  $aparecer = d.querySelector(index),
+  $desaparecer = d.querySelector(editor),
+  $btnImg = d.querySelector(btnImg)
+
+  $aparecer.classList.add("invisible")
+      setTimeout(() => {
+        $aparecer.classList.add("none")
+        $desaparecer.classList.remove("none")
+        setTimeout(() => {
+          $desaparecer.classList.remove("invisible")
+        }, 300); // Uso el setTimeOut porque la clase tiene una transición de 0.3 segundos (o 300 milisegundos)
+      }, 300);
+      $btnImg.setAttribute("src", imgEditar)
+
+  $inputContenido.value= ""
+  $inputTitulo.value= ""
+
+  cambiarTitulo("h1", "Mis notas")
+
+}
+
+export function borrarNota(getData, uploadData, father, selector) {
+  const index = getData("index"),
+  elements = getData("notas"),
+  $father = d.querySelector(father),
+  $markups = d.querySelectorAll(selector),
+  $element = $markups[index]
+
+  $father.removeChild($element)
+
+  const newArr = elements
+  newArr.splice(index, 1)
+
+  uploadData(newArr, "notas")
+}
+
+export function ocultarVentanaEmergente(btn, window) {
+  const $window = d.querySelector(window),
+  $btn = d.querySelector(btn)
+
+  $btn.addEventListener("click", e => {
+
+    console.log("uwun't");
+
+      $window.classList.add("invisible")
+      setTimeout(() => {
+        $window.classList.add("none")
+      }, 300);
   })
 }

@@ -159,14 +159,16 @@ section {
 }
 
 .create img,
-.menu img {
+.menu img,
+.menu-btn img {
   filter: invert(95%);
   width: 2rem;
   height: 2rem;
 }
 
 .create:hover,
-.menu:hover {
+.menu:hover,
+.menu-btn:hover {
   background-color: whitesmoke;
 }
 
@@ -192,6 +194,26 @@ section {
 
 .invert {
   filter: invert(0%) !important;
+}
+
+.botones-menu {
+  width: calc(100% - 3rem);
+  height: calc(100% - 3rem);
+  padding: 1.5rem;
+}
+
+.menu-btn {
+  border-radius: 2.5rem;
+  width: 4rem;
+  height: 4rem;
+  background-color: black;
+  cursor: pointer;
+  transition: 0.5s;
+  border: var(--whitesmoke) solid 2px;
+  display: flex;
+  bottom: 1.5rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /*Campo de notas*/
@@ -281,4 +303,51 @@ section {
   padding: 0;
   transition: 0.3s;
   margin: 0;
+}
+
+/*Responsive*/
+
+@media (min-width: 900px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  /*Menú*/
+
+  .menu-activo {
+    height: auto !important;
+    width: 90vw !important;
+  }
+  .menu-oculto {
+    width: 5rem;
+    height: 5rem;
+  }
+  .botones-menu {
+    width: calc(100% - 12rem);
+    height: 5rem;
+    padding: 0 8rem;
+    display: flex;
+    align-items: center;
+  }
+  .menu-btn {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .create,
+  .menu {
+    border-radius: 3rem;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  /*Editor*/
+
+  .input-notas {
+    font-size: 1.7rem;
+    width: 80%;
+    height: 55vh;
+    border-radius: 2.5rem;
+    padding: 2.5rem;
+  }
 }

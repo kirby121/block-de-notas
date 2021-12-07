@@ -24,6 +24,7 @@ export function crearNotasDom(notas, claseDiv, container) {
     $div.classList.add(claseDiv)
 
     $title.textContent = nota.title
+    
     $content.textContent = `${nota.content.slice(0,80)}...`
 
     $container.appendChild($div)

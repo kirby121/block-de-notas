@@ -1,7 +1,7 @@
-import { btnHoverImg, crearNotaBtn, devolverValorInput, expandirMenu, mostrarMenu, mostrarNotas, ventanaEmergente } from "./botones.js";
+import { btnBorrar, btnHoverImg, crearNotaBtn, devolverValorInput, expandirMenu, mostrarMenu, mostrarNotas, ventanaEmergente } from "./botones.js";
 import searchFilter from "./filtro_busquedas.js";
 import { getData, uploadData, uploadOneElement } from "./ls.js";
-import { cambiarTexto, cambiarTituloEditor, cambiarTituloVentanaEmergente, insertarValorTextarea, mostrarElemento, ocultarElemento } from "./otras_funciones.js";
+import { borrarNota, cambiarTexto, cambiarTituloEditor, cambiarTituloVentanaEmergente, insertarValorTextarea, mostrarElemento, ocultarElemento, ocultarVentanaEmergente, volverAIndex } from "./otras_funciones.js";
 import { crearNotasDom, crearObjeto, crearUltimaNotaDom, Nota } from "./POO.js";
 
 const d = document,
@@ -17,10 +17,13 @@ d.addEventListener("DOMContentLoaded", e => {
   crearNotaBtn(".create", ".index", ".campo-notas","edit.webp","confirm.webp")
   btnHoverImg(".create", "invert")
   btnHoverImg(".menu", "invert")
+  btnHoverImg(".menu-btn", "invert")
   mostrarNotas(getData, ".nota", ".index", ".campo-notas", ".create img", "confirm.webp", ".create", insertarValorTextarea, ".campo-notas textarea", cambiarTexto, "h1", uploadOneElement)
   expandirMenu(".menu","menu-activo", ".menu-oculto")
   mostrarMenu(".menu", ".menu-oculto",mostrarElemento, ocultarElemento, ".create img", "edit.webp", "confirm.webp")
   cambiarTituloVentanaEmergente(cambiarTexto, "h1", ".elegirTitulo input", ".elegirTitulo button")
+  btnBorrar(".menu-btn", borrarNota, volverAIndex, "h1", getData, uploadOneElement, ".input-notas", ".elegirTitulo input", ".index", ".campo-notas", ".create img", "edit.webp", cambiarTexto)
+  ocultarVentanaEmergente(".borrar", ".centrar")
 
   /*Código que no está en módulos uwun't */
 

@@ -144,6 +144,10 @@ export function mostrarNotas(funcionObtenerNotas, selector, desaparecer, aparece
    $notas.forEach((nota, index) => {
     nota.addEventListener("click", e => { // Aquí se añade el evento a cada nota para que, al ser presionadas, se muestren
 
+      if(index >= funcionObtenerNotas("notas").length){
+            index = funcionObtenerNotas("notas").length - 1
+          }
+
       funcion(textarea, notasGuardadas[index].content) // Aquí se añade el contenido de la nota en el área de edición
       funcionCambiarTitulo(titulo, `Editando: ${notasGuardadas[index].title}`) // Aquí se modifica el título de la página y se pone "Editando: {nombre de la nota}"
       $desaparecer.classList.add("invisible") // Aquí se desaparece el index y se abre el editor
@@ -170,9 +174,14 @@ export function mostrarNotas(funcionObtenerNotas, selector, desaparecer, aparece
         // Aquí se vuelve a asignar el evento a cada nota para que al ser presionadas se muestren (se vuelve a poner ya que, al crearse una nueva nota, ésta no tendrá asignado el evento que previamente le dimos a las que estaban creadas desde antes)
 
         nota.addEventListener("click", e => {
+
+          if(index >= funcionObtenerNotas("notas").length){
+            index = funcionObtenerNotas("notas").length - 1
+          }
+        
       funcionSubirDatos(index, "index")
-      funcion(textarea, notasGuardadas[index].content)
-      funcionCambiarTitulo(titulo, `Editando: ${notasGuardadas[index].title}`)
+      funcion(textarea, funcionObtenerNotas("notas")[index].content)
+      funcionCambiarTitulo(titulo, `Editando: ${funcionObtenerNotas("notas")[index].title}`)
       $desaparecer.classList.add("invisible")
       setTimeout(() => {
         $desaparecer.classList.add("none")
@@ -185,5 +194,21 @@ export function mostrarNotas(funcionObtenerNotas, selector, desaparecer, aparece
     })
   });
     }, 500);
+  })
+}
+
+export function btnBorrar(btn, funcionBorrar, funcionVolver, titulo, obtenerDatos, subirDatos, inputContenido, inputTitulo, editor, index, btnImg, imgEditar, cambiarTitulo) {
+  
+  const $titulo = d.querySelector(titulo),
+  $btn = d.querySelector(btn)
+
+  $btn.addEventListener("click", e => {
+    if($titulo.textContent.includes("Editando: ")){
+      funcionVolver(index, editor, btnImg, inputTitulo, inputContenido, imgEditar, cambiarTitulo)
+      funcionBorrar(obtenerDatos, subirDatos, ".notas", ".nota")
+    }
+    else{
+      funcionVolver(index, editor, btnImg, inputTitulo, inputContenido, imgEditar, cambiarTitulo)
+    }
   })
 }
