@@ -65,17 +65,25 @@ export function btnHoverImg(btn, filter) {
 
 }
 
-export function expandirMenu(btn, clase, menu) {
+export function expandirMenu(btn, clase, menu, elementos) {
 
   // Esta función agrega o quita una clase a un elemento al presionar un botón. En este caso, la uso para expandir o disminuir el área de menú al presionar el botón
 
   const d = document,
   $btn = d.querySelector(btn),
+  $elementos = d.querySelector(elementos),
   $menu = d.querySelector(menu)
   
   $btn.addEventListener("click", e => {
+    
     $menu.classList.toggle(clase)
-    $menu.classList.toggle("invisible")
+    $menu.classList.toggle("invisible");
+
+    (!$menu.classList.contains("invisible"))
+    ? setTimeout(() => {
+      $elementos.classList.remove("invisible")
+    }, 300)
+    : $elementos.classList.add("invisible")
   })
 }
 
@@ -200,7 +208,8 @@ export function mostrarNotas(funcionObtenerNotas, selector, desaparecer, aparece
 export function btnBorrar(btn, funcionBorrar, funcionVolver, titulo, obtenerDatos, subirDatos, inputContenido, inputTitulo, editor, index, btnImg, imgEditar, cambiarTitulo) {
   
   const $titulo = d.querySelector(titulo),
-  $btn = d.querySelector(btn)
+  $btn = d.querySelector(btn),
+  $btnDiv = d.querySelector(btn)
 
   $btn.addEventListener("click", e => {
     if($titulo.textContent.includes("Editando: ")){
@@ -210,5 +219,76 @@ export function btnBorrar(btn, funcionBorrar, funcionVolver, titulo, obtenerDato
     else{
       funcionVolver(index, editor, btnImg, inputTitulo, inputContenido, imgEditar, cambiarTitulo)
     }
+  })
+}
+
+export function modificarTamañoFuente(btn, clase, zoomOut) {
+  
+  const $btn = d.querySelector(btn),
+  $element = d.querySelector(clase)
+
+  let tamañoFuente = 1.6
+
+  $btn.addEventListener("click", e => {
+    if(zoomOut == true){
+      if($element.style.fontSize === "") $element.style.fontSize = "1.7rem"
+      
+      tamañoFuente = parseFloat($element.style.fontSize.slice(0, 3))
+
+      if(tamañoFuente > 1.5){
+
+      tamañoFuente -= 0.2
+
+      $element.style.fontSize = `${tamañoFuente}rem`
+      }
+    }
+    else{
+      if($element.style.fontSize === "") $element.style.fontSize = "1.9rem"
+      
+      tamañoFuente = parseFloat($element.style.fontSize.slice(0, 3))
+
+      if(tamañoFuente < 4){
+        
+        tamañoFuente += 0.2
+        
+        $element.style.fontSize = `${tamañoFuente}rem`
+      }
+    }
+  })
+}
+
+export function cerrarMenu(menu, btn, input, clase, elementos) {
+  const $menu = d.querySelector(menu),
+  $btn = d.querySelector(btn),
+  $input = d.querySelector(input),
+  $elementos = d.querySelector(elementos)
+
+  $btn.addEventListener("click", e => {
+    if($input.value != ""){
+      $menu.classList.remove(clase)
+      $menu.classList.add("invisible")
+       (!$menu.classList.contains("invisible"))
+    ? setTimeout(() => {
+      $elementos.classList.remove("invisible")
+    }, 300)
+    : $elementos.classList.add("invisible")
+    } 
+  })
+}
+
+export function cerrarMenuBtn(menu, btn, clase, elementos) {
+  const $menu = d.querySelector(menu),
+  $btn = d.querySelector(btn),
+  $elementos = d.querySelector(elementos)
+
+  $btn.addEventListener("click", e => {
+    $menu.classList.remove(clase)
+      $menu.classList.add("invisible");
+
+      (!$menu.classList.contains("invisible"))
+    ? setTimeout(() => {
+      $elementos.classList.remove("invisible")
+    }, 300)
+    : $elementos.classList.add("invisible")
   })
 }

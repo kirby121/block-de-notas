@@ -100,8 +100,6 @@ export function ocultarVentanaEmergente(btn, window) {
 
   $btn.addEventListener("click", e => {
 
-    console.log("uwun't");
-
       $window.classList.add("invisible")
       setTimeout(() => {
         $window.classList.add("none")

@@ -2,6 +2,10 @@
   margin: 0;
 }
 
+img::selection {
+  background-color: transparent;
+}
+
 html {
   background-color: black;
   font-family: "Raleway", sans-serif;
@@ -198,20 +202,22 @@ section {
 
 .botones-menu {
   width: calc(100% - 3rem);
-  height: calc(100% - 3rem);
   padding: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .menu-btn {
   border-radius: 2.5rem;
   width: 4rem;
   height: 4rem;
+  margin: 1rem;
   background-color: black;
   cursor: pointer;
   transition: 0.5s;
   border: var(--whitesmoke) solid 2px;
   display: flex;
-  bottom: 1.5rem;
   justify-content: center;
   align-items: center;
 }
@@ -328,10 +334,12 @@ section {
     padding: 0 8rem;
     display: flex;
     align-items: center;
+    justify-content: start;
   }
   .menu-btn {
     width: 4rem;
     height: 4rem;
+    margin: 0 3rem;
   }
 
   .create,
@@ -344,10 +352,18 @@ section {
   /*Editor*/
 
   .input-notas {
-    font-size: 1.7rem;
     width: 80%;
     height: 55vh;
     border-radius: 2.5rem;
     padding: 2.5rem;
+  }
+
+  /*Elegir título*/
+
+  .elegirTitulo {
+    width: 80vw;
+    height: 50vh;
+    border-radius: 2rem;
+    padding: 3.65rem 2.45rem;
   }
 }

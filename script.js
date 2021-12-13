@@ -1,4 +1,4 @@
-import { btnBorrar, btnHoverImg, crearNotaBtn, devolverValorInput, expandirMenu, mostrarMenu, mostrarNotas, ventanaEmergente } from "./botones.js";
+import { btnBorrar, btnHoverImg, cerrarMenu, cerrarMenuBtn, crearNotaBtn, devolverValorInput, expandirMenu, modificarTamañoFuente, mostrarMenu, mostrarNotas, ventanaEmergente } from "./botones.js";
 import searchFilter from "./filtro_busquedas.js";
 import { getData, uploadData, uploadOneElement } from "./ls.js";
 import { borrarNota, cambiarTexto, cambiarTituloEditor, cambiarTituloVentanaEmergente, insertarValorTextarea, mostrarElemento, ocultarElemento, ocultarVentanaEmergente, volverAIndex } from "./otras_funciones.js";
@@ -13,17 +13,23 @@ d.addEventListener("DOMContentLoaded", e => {
   
   cambiarTituloEditor(".campo-notas textarea", ".create", "h1", ".create img", "confirm.webp", cambiarTexto)
   ventanaEmergente(".create", ".elegirTitulo button", ".centrar", ".create img", "edit.webp", "confirm.webp")
+  ocultarVentanaEmergente(".trash-can", ".centrar")
   searchFilter(".buscador", ".nota")
   crearNotaBtn(".create", ".index", ".campo-notas","edit.webp","confirm.webp")
   btnHoverImg(".create", "invert")
   btnHoverImg(".menu", "invert")
-  btnHoverImg(".menu-btn", "invert")
+  btnHoverImg(".trash-can", "invert")
+  btnHoverImg(".zoom-in", "invert")
+  btnHoverImg(".zoom-out", "invert")
   mostrarNotas(getData, ".nota", ".index", ".campo-notas", ".create img", "confirm.webp", ".create", insertarValorTextarea, ".campo-notas textarea", cambiarTexto, "h1", uploadOneElement)
-  expandirMenu(".menu","menu-activo", ".menu-oculto")
+  btnBorrar(".trash-can", borrarNota, volverAIndex, "h1", getData, uploadOneElement, ".input-notas", ".elegirTitulo input", ".index", ".campo-notas", ".create img", "edit.webp", cambiarTexto)
+  expandirMenu(".menu","menu-activo", ".menu-oculto", ".botones-menu")
+  cerrarMenu(".menu-oculto", ".create", ".input-notas", "menu-activo", ".botones-menu")
+  cerrarMenuBtn(".menu-oculto", ".trash-can", "menu-activo", ".botones-menu")
   mostrarMenu(".menu", ".menu-oculto",mostrarElemento, ocultarElemento, ".create img", "edit.webp", "confirm.webp")
   cambiarTituloVentanaEmergente(cambiarTexto, "h1", ".elegirTitulo input", ".elegirTitulo button")
-  btnBorrar(".menu-btn", borrarNota, volverAIndex, "h1", getData, uploadOneElement, ".input-notas", ".elegirTitulo input", ".index", ".campo-notas", ".create img", "edit.webp", cambiarTexto)
-  ocultarVentanaEmergente(".borrar", ".centrar")
+  modificarTamañoFuente(".zoom-out", ".input-notas", true)
+  modificarTamañoFuente(".zoom-in", ".input-notas", false)
 
   /*Código que no está en módulos uwun't */
 
@@ -41,12 +47,17 @@ d.addEventListener("DOMContentLoaded", e => {
   $btnTitulo.addEventListener("click", e => {
     titulo = devolverValorInput(".elegirTitulo input")
   })
+
   
   $crearObjetoNotaBtn.addEventListener("click", e => {
-
+    
     if ($crearObjetoNotaBtnImg.getAttribute("src") == "edit.webp"){
       
       if($titulo.textContent.includes("Editando: ")){
+        
+        if(getData("index") >= getData("notas").length){
+                uploadOneElement(0, "index")
+              }
 
         let notasGuardadasEditando = getData("notas"),
         nuevaNota = notasGuardadasEditando[getData("index")]
