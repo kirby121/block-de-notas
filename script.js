@@ -1,7 +1,7 @@
-import { btnBorrar, btnHoverImg, cerrarMenu, cerrarMenuBtn, crearNotaBtn, devolverValorInput, expandirMenu, modificarTamañoFuente, mostrarMenu, mostrarNotas, ventanaEmergente } from "./botones.js";
+import { btnBorrar, btnHoverImg, cerrarContadorBtn, cerrarMenu, cerrarMenuBtn, contar, crearNotaBtn, devolverValorInput, expandirMenu, modificarTamañoFuente, mostrarMenu, mostrarNotas, toggleContadorBtn, ventanaEmergente } from "./botones.js";
 import searchFilter from "./filtro_busquedas.js";
 import { getData, uploadData, uploadOneElement } from "./ls.js";
-import { borrarNota, cambiarTexto, cambiarTituloEditor, cambiarTituloVentanaEmergente, insertarValorTextarea, mostrarElemento, ocultarElemento, ocultarVentanaEmergente, volverAIndex } from "./otras_funciones.js";
+import { borrarNota, cambiarTexto, cambiarTituloEditor, cambiarTituloVentanaEmergente, contarCaracteres, insertarValorTextarea, mostrarElemento, ocultarElemento, ocultarVentanaEmergente, volverAIndex } from "./otras_funciones.js";
 import { crearNotasDom, crearObjeto, crearUltimaNotaDom, Nota } from "./POO.js";
 
 const d = document,
@@ -21,6 +21,11 @@ d.addEventListener("DOMContentLoaded", e => {
   btnHoverImg(".trash-can", "invert")
   btnHoverImg(".zoom-in", "invert")
   btnHoverImg(".zoom-out", "invert")
+  btnHoverImg(".estadistic", "invert")
+  cerrarContadorBtn(".contador button", ".contador")
+  cerrarContadorBtn(".trash-can", ".contador")
+  toggleContadorBtn(".estadistic", ".contador")
+  contar(".estadistic", contarCaracteres, ".contador-caracteres", ".input-notas")
   mostrarNotas(getData, ".nota", ".index", ".campo-notas", ".create img", "confirm.webp", ".create", insertarValorTextarea, ".campo-notas textarea", cambiarTexto, "h1", uploadOneElement)
   btnBorrar(".trash-can", borrarNota, volverAIndex, "h1", getData, uploadOneElement, ".input-notas", ".elegirTitulo input", ".index", ".campo-notas", ".create img", "edit.webp", cambiarTexto)
   expandirMenu(".menu","menu-activo", ".menu-oculto", ".botones-menu")
@@ -111,7 +116,7 @@ d.addEventListener("DOMContentLoaded", e => {
 let notasGuardadas = getData("notas")
 
 if (notasGuardadas.length === 0){
-  uploadData([], crearObjeto(claseNotas, "Presioname uwun't", "Veo que es tu primera vez entrando, así que aquí va una pequeña explicación del funcionamiento de la página.\n\n 1. Crear una nota: Para crear una nota, debes hacer click en el lápiz que se encuentra en la esquina inferior derecha del menú de inicio. Luego de hacerlo, aparecerá una ventana en la que deberás ingresar un título. Este será el nombre con el que se guardará la nota. Después de ingresar el título y presionar el botón de aceptar, se mostrará un área de color blanco en la que escribirás tu texto. Al terminar, deberás presionar el botón de la esquina inferior derecha con un pulgar arriba para guardar la nota.\n\n2. Editar una nota: Para modificar el contenido textual de una nota, deberás hacer click sobre ésta misma. Luego de esto, serás enviado al mismo editor de texto que cuando creas la nota, aunque con la diferencia de que, en vez de estar vacío, contendrá la nota que habías guardado. Aquí es donde podrás modificar el contenido. Una vez que hayas terminado, puedes presionar el botón de la esquina inferior derecha y se guardará automáticamente.") , "notas")
+  uploadData([], crearObjeto(claseNotas, "Presioname uwun't", "Veo que es tu primera vez entrando, así que aquí va una pequeña explicación del funcionamiento de la página.\n\n 1. Crear una nota: Para crear una nota, debes hacer click en el lápiz que se encuentra en la esquina inferior derecha del menú de inicio. Luego de hacerlo, aparecerá una ventana en la que deberás ingresar un título. Este será el nombre con el que se guardará la nota. Después de ingresar el título y presionar el botón de aceptar, se mostrará un área de color blanco en la que escribirás tu texto. Al terminar, deberás presionar el botón de la esquina inferior derecha con un pulgar arriba para guardar la nota.\n\n2. Editar una nota: Para modificar el contenido textual de una nota, deberás hacer click sobre ésta misma. Luego de esto, serás enviado al mismo editor de texto que cuando creas la nota, aunque con la diferencia de que, en vez de estar vacío, contendrá la nota que habías guardado. Aquí es donde podrás modificar el contenido. Una vez que hayas terminado, puedes presionar el botón de la esquina inferior derecha y se guardará automáticamente.\n\n3. Borrar una nota: Para borrar una nota, únicamente hace falta ingresar a la nota, abrir el menú de opciones en la esquina inferior izquierda y presionar la caneca de basura.\n\n4. Aumentar/Disminuir tamaño de letra: Abre la nota, presiona el menú de opciones en la esquina inferior izquierda y presiona la lupa con el simbolo + para acercar y la lupa con el simbolo - para alejar.\n\n5. Contar palabras o caracteres: Abre la nota, presiona el menú de opciones en la esquina inferior izquierda y presiona el botón que contiene una gráfica circular. Al hacerlo, aparecerá una ventana emergente con la cantidad de palabras y caracteres") , "notas")
   uploadOneElement(0, "index")
 }
 

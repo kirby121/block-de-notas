@@ -21,11 +21,14 @@ body {
 
 ::-webkit-scrollbar {
   background-color: #f5f5f5;
+  border-radius: 2rem;
 }
 ::-webkit-scrollbar-track {
   background-color: #000000;
+  border-radius: 2rem;
 }
 ::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
   background-color: var(--gray);
 }
 
@@ -177,7 +180,7 @@ section {
 }
 
 .menu-activo {
-  height: calc(100vh - 1.5rem - 17vh) !important;
+  height: calc(60vh - 1.5rem - 17vh) !important;
   width: 91vw !important;
   justify-content: start;
   align-items: flex-end;
@@ -293,7 +296,8 @@ section {
   cursor: pointer;
 }
 
-.elegirTitulo button:hover {
+.elegirTitulo button:hover,
+.contador button:hover {
   border: 0.5rem var(--whitesmoke) solid;
   color: var(--whitesmoke);
 }
@@ -309,6 +313,50 @@ section {
   padding: 0;
   transition: 0.3s;
   margin: 0;
+}
+
+/*Contador*/
+
+.contador {
+  left: calc(12.5vw - 2rem);
+  transition: 0.3s;
+  background-color: black;
+  position: absolute;
+  width: 75vw;
+  height: 50vh;
+  border-radius: 2rem;
+  font-family: "Raleway", sans-serif;
+  padding: 2rem;
+  top: 17vh;
+  font-size: 1.4rem;
+  z-index: 200;
+}
+
+.centrar-texto {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contador h2 {
+  color: var(--whitesmoke);
+  font-weight: 500;
+  padding: 2rem 0;
+}
+
+.contador button {
+  border-radius: 1.5rem;
+  border: 0.5rem var(--gray) solid;
+  color: var(--gray);
+  background-color: black;
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  padding: 0.5rem 1.5rem;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 /*Responsive*/
@@ -349,21 +397,20 @@ section {
     height: 5rem;
   }
 
-  /*Editor*/
-
-  .input-notas {
+  .input-notas,
+  .elegirTitulo {
     width: 80%;
     height: 55vh;
     border-radius: 2.5rem;
     padding: 2.5rem;
   }
 
-  /*Elegir título*/
-
-  .elegirTitulo {
-    width: 80vw;
-    height: 50vh;
-    border-radius: 2rem;
-    padding: 3.65rem 2.45rem;
+  .contador {
+    width: 80%;
+    height: 55vh;
+    border-radius: 2.5rem;
+    padding: 2.5rem;
+    left: calc(12.5vw - 5rem);
+    font-size: 2rem;
   }
 }

@@ -80,11 +80,17 @@ export function volverAIndex(index, editor, btnImg, inputTitulo, inputContenido,
 }
 
 export function borrarNota(getData, uploadData, father, selector) {
-  const index = getData("index"),
-  elements = getData("notas"),
+  const elements = getData("notas"),
   $father = d.querySelector(father),
-  $markups = d.querySelectorAll(selector),
-  $element = $markups[index]
+  $markups = d.querySelectorAll(selector)
+  
+  let index = getData("index"),
+   $element = $markups[index]
+
+  if($markups.length <= index){
+    index = 0
+    $element = $markups[index]
+  } 
 
   $father.removeChild($element)
 
@@ -105,4 +111,10 @@ export function ocultarVentanaEmergente(btn, window) {
         $window.classList.add("none")
       }, 300);
   })
+}
+
+export function contarCaracteres(input, separador) {
+  const $input = d.querySelector(input)
+
+  return $input.value.split(separador)
 }

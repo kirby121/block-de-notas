@@ -266,7 +266,7 @@ export function cerrarMenu(menu, btn, input, clase, elementos) {
   $btn.addEventListener("click", e => {
     if($input.value != ""){
       $menu.classList.remove(clase)
-      $menu.classList.add("invisible")
+      $menu.classList.add("invisible");
        (!$menu.classList.contains("invisible"))
     ? setTimeout(() => {
       $elementos.classList.remove("invisible")
@@ -290,5 +290,53 @@ export function cerrarMenuBtn(menu, btn, clase, elementos) {
       $elementos.classList.remove("invisible")
     }, 300)
     : $elementos.classList.add("invisible")
+  })
+}
+
+export function cerrarContadorBtn(btn, contador) {
+  const $btn = d.querySelector(btn),
+  $contador = d.querySelector(contador)
+
+  $btn.addEventListener("click", e => {
+
+    $contador.classList.add("invisible")
+    setTimeout(() => {
+      $contador.classList.add("none")
+    }, 300);
+  })
+}
+
+export function toggleContadorBtn(btn, contador) {
+  const $btn = d.querySelector(btn),
+  $contador = d.querySelector(contador)
+
+  $btn.addEventListener("click", e => {
+
+    if($contador.classList.contains("invisible")){
+      $contador.classList.remove("none")
+      setTimeout(() => {
+        $contador.classList.remove("invisible")
+      }, 300);
+    }
+
+    else{
+      $contador.classList.add("invisible")
+    setTimeout(() => {
+      $contador.classList.add("none")
+    }, 300);
+    }
+
+  })
+}
+
+export function contar(btn, funcion, textoCaracteres, input) {
+  const $btn = d.querySelector(btn),
+  $textoCaracteres = d.querySelector(textoCaracteres)
+
+  $btn.addEventListener("click", e => {
+    let caracteres = funcion(input, ""),
+    palabras = funcion(input, " ")
+
+    $textoCaracteres.textContent = `La nota contiene ${caracteres.length} caracteres y ${palabras.length} palabras`
   })
 }
